@@ -4,7 +4,17 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class SelectiveProcess {
     public static void main(String[] args) throws Exception {
-        candidatesSelection();
+        printSelected();
+    }
+
+    static void printSelected() {
+        String[] candidates = {"FELIPE", "MARCIA", "JULIA", "PAULO", "AUGUSTO"};
+
+        System.out.println("Imprimindo a lista de candidatos informando o índice do elemento");
+
+        for (String candidate: candidates) {
+            System.out.println("O candidato selecionado foi " + candidate);
+        }
     }
 
     static void candidatesSelection() {
