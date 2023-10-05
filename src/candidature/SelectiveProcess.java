@@ -1,10 +1,42 @@
 package candidature;
 
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class SelectiveProcess {
     public static void main(String[] args) throws Exception {
-        printSelected();
+        String[] candidates = {"FELIPE", "MARCIA", "JULIA", "PAULO", "AUGUSTO"};
+
+        for (String candidate : candidates) {
+            getInContact(candidate);
+        }
+    }
+
+    static void getInContact(String candidate) {
+        int attemptsMade = 1;
+        boolean keepGoing = true;
+        boolean answered = false;
+
+        do {
+            answered = answer();
+            keepGoing = !answered;
+
+            if (keepGoing) {
+                attemptsMade++;
+            } else {
+                System.out.println("CONTATO REALIZADO COM SUCESSO");
+            }
+        } while (keepGoing && attemptsMade < 3);
+
+        if (answered) {
+            System.out.println("CONSEGUIMOS CONTATO COM O " + candidate + "NA " + attemptsMade + " TENTATIVA");
+        } else {
+            System.out.println("NÃO CONSEGUIMOS CONTATO COM O " + candidate + ", NÚMERO MÁXIMO DE TENTATIVAS: 3");
+        }
+    }
+
+    static boolean answer() {
+        return new Random().nextInt(3) == 1;
     }
 
     static void printSelected() {
@@ -12,7 +44,7 @@ public class SelectiveProcess {
 
         System.out.println("Imprimindo a lista de candidatos informando o índice do elemento");
 
-        for (String candidate: candidates) {
+        for (String candidate : candidates) {
             System.out.println("O candidato selecionado foi " + candidate);
         }
     }
